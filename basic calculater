@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Calculator</title>
+    <link rel="stylesheet" href="first.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="display" id="display">0</div>
+        <div class="buttons">
+            <button class="btn" onclick="clearDisplay()">C</button>
+            <button class="btn" onclick="appendToDisplay('/')">/</button>
+            <button class="btn" onclick="appendToDisplay('')"></button>
+            <button class="btn" onclick="appendToDisplay('-')">-</button>
+            <button class="btn" onclick="appendToDisplay('7')">7</button>
+            <button class="btn" onclick="appendToDisplay('8')">8</button>
+            <button class="btn" onclick="appendToDisplay('9')">9</button>
+            <button class="btn" onclick="appendToDisplay('+')">+</button>
+            <button class="btn" onclick="appendToDisplay('4')">4</button>
+            <button class="btn" onclick="appendToDisplay('5')">5</button>
+            <button class="btn" onclick="appendToDisplay('6')">6</button>
+            <button class="btn" onclick="calculate()">=</button>
+            <button class="btn" onclick="appendToDisplay('1')">1</button>
+            <button class="btn" onclick="appendToDisplay('2')">2</button>
+            <button class="btn" onclick="appendToDisplay('3')">3</button>
+            <button class="btn" onclick="appendToDisplay('.')">.</button>
+            <button class="btn zero" onclick="appendToDisplay('0')">0</button>
+        </div>
+    </div>
+    <script src="first.js"></script>
+</body>
+</html>
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+.calculator {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px; /* Increase width */
+    height: 500px; /* Increase height */
+}
+
+.display {
+    background-color: #69ff73; /* Pink background color for result */
+    color: #fff; /* White text color */
+    font-size: 3em; /* Increase font size */
+    padding: 30px; /* Increase padding */
+    text-align: right;
+    border-bottom: 1px solid #ccc;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.btn {
+    border: 1px solid #ccc;
+    background-color: #56ad619e; /* Yellow background color */
+    color: #ae1e88; /* Green text color */
+    padding: 25px; /* Increase padding */
+    font-size: 2em; /* Increase font size */
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: #f9f9f9;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+.btn:active {
+    background-color: #ddd;
+}
+
+function clearDisplay() {
+    document.getElementById('display').textContent = '0';
+}
+
+function appendToDisplay(value) {
+    const display = document.getElementById('display');
+    if (display.textContent === '0' && value !== '.') {
+        display.textContent = value;
+    } else {
+        display.textContent += value;
+    }
+}
+
+function calculate() {
+    const display = document.getElementById('display');
+    try {
+        display.textContent = eval(display.textContent) || '0';
+    } catch {
+        display.textContent = 'Error';
+    }
+}
+
+
